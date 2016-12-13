@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - @localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="dhanushka"/>
+    <schema id="2" name="divinepizza"/>
+    <schema id="3" name="information_schema"/>
+    <schema id="4" name="isuru_bigsteps"/>
+    <schema id="5" name="mysql"/>
+    <schema id="6" name="offlangprog">
+      <visible>1</visible>
+    </schema>
+    <schema id="7" name="performance_schema"/>
+    <schema id="8" name="phpmyadmin"/>
+    <schema id="9" name="sms"/>
+    <schema id="10" name="test"/>
+    <table id="11" parent="6" name="applicant"/>
+    <table id="12" parent="6" name="applicant_attendance"/>
+    <table id="13" parent="6" name="class"/>
+    <table id="14" parent="6" name="class_enrollment"/>
+    <table id="15" parent="6" name="class_sessions"/>
+    <table id="16" parent="6" name="course"/>
+    <table id="17" parent="6" name="enrollment_approval"/>
+    <table id="18" parent="6" name="enrollment_confirmation"/>
+    <table id="19" parent="6" name="instructor"/>
+    <table id="20" parent="6" name="login_history"/>
+    <table id="21" parent="6" name="office"/>
+    <table id="22" parent="6" name="properties"/>
+    <table id="23" parent="6" name="session_schedule"/>
+    <table id="24" parent="6" name="training_center"/>
+    <table id="25" parent="6" name="user_level_privileges"/>
+    <table id="26" parent="6" name="user_levels"/>
+    <table id="27" parent="6" name="user_privileges"/>
+    <table id="28" parent="6" name="users"/>
+    <column id="29" parent="11" name="applicant_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="30" parent="11" name="applicant_office">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="31" parent="11" name="salutation">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="32" parent="11" name="applicant_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="33" parent="11" name="applicant_nic">
+      <mandatory>1</mandatory>
+      <data-type>varchar(12)|0</data-type>
+    </column>
+    <column id="34" parent="11" name="applicant_dofb">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="35" parent="11" name="applicant_first_apdate">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="36" parent="11" name="service_grade">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="37" parent="11" name="personal_address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="38" parent="11" name="personal_address_2">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="39" parent="11" name="personal_telephone">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="40" parent="11" name="personal_telephone2">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="41" parent="11" name="personal_email">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="42" parent="11" name="applicant_office">
+      <columns>applicant_office</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="43" parent="11" name="PRIMARY">
+      <columns>applicant_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="44" parent="11" name="applicant_ibfk_1">
+      <columns>applicant_office</columns>
+      <ref-key>~.office.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="45" parent="12" name="attendance_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="46" parent="12" name="date_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="47" parent="12" name="applicant_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="48" parent="12" name="is_present">
+      <comment>1 : Present, 0 ; Absent</comment>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="49" parent="12" name="absence_remark">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="50" parent="12" name="applicant_id">
+      <columns>applicant_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="51" parent="12" name="day_id">
+      <columns>date_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="52" parent="12" name="PRIMARY">
+      <columns>attendance_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="53" parent="12" name="applicant_attendance_ibfk_2">
+      <columns>date_id</columns>
+      <ref-key>~.session_schedule.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="54" parent="12" name="applicant_attendance_ibfk_1">
+      <columns>applicant_id</columns>
+      <ref-key>~.applicant.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="55" parent="13" name="class_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="56" parent="13" name="training_center_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="57" parent="13" name="course_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="58" parent="13" name="instructor_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="59" parent="13" name="class_day">
+      <comment>1-7 of the day: Ex: 1 for monday, 2 for tuesday, etc...</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="60" parent="13" name="class_start_time">
+      <data-type>time|0</data-type>
+    </column>
+    <column id="61" parent="13" name="class_end_time">
+      <data-type>time|0</data-type>
+    </column>
+    <column id="62" parent="13" name="added_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="63" parent="13" name="added_user">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="64" parent="13" name="added_user">
+      <columns>added_user</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="65" parent="13" name="course_id">
+      <columns>course_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="66" parent="13" name="instructor_id">
+      <columns>instructor_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="67" parent="13" name="training_center_id">
+      <columns>training_center_id
+course_id
+instructor_id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="68" parent="13" name="PRIMARY">
+      <columns>class_id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="69" parent="13" name="training_center_id">
+      <columns>training_center_id
+course_id
+instructor_id</columns>
+      <underlying-index>training_center_id</underlying-index>
+    </key>
+    <foreign-key id="70" parent="13" name="class_ibfk_1">
+      <columns>training_center_id</columns>
+      <ref-key>~.training_center.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="71" parent="13" name="class_ibfk_2">
+      <columns>course_id</columns>
+      <ref-key>~.course.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="72" parent="13" name="class_ibfk_3">
+      <columns>instructor_id</columns>
+      <ref-key>~.instructor.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="73" parent="13" name="class_ibfk_4">
+      <columns>added_user</columns>
+      <ref-key>~.users.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="74" parent="14" name="enrollment_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="75" parent="14" name="applicant_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="76" parent="14" name="session_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="77" parent="14" name="is_completed">
+      <comment>is enrolled course session is successfully completed</comment>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="78" parent="14" name="completion_remarks">
+      <comment>comments for the enrollment for an applicant</comment>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="79" parent="14" name="last_updated_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="80" parent="14" name="last_edited_user">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="81" parent="14" name="added_user">
+      <columns>last_edited_user</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="82" parent="14" name="applicant_id">
+      <columns>applicant_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="83" parent="14" name="class_id">
+      <columns>session_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="84" parent="14" name="PRIMARY">
+      <columns>enrollment_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="85" parent="14" name="class_request_ibfk_1">
+      <columns>applicant_id</columns>
+      <ref-key>~.applicant.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="86" parent="14" name="class_enrollment_ibfk_1">
+      <columns>session_id</columns>
+      <ref-key>~.class_sessions.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="87" parent="15" name="session_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="88" parent="15" name="session_year">
+      <data-type>int(4)|0</data-type>
+    </column>
+    <column id="89" parent="15" name="start_date">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="90" parent="15" name="end_date">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="91" parent="15" name="class_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="92" parent="15" name="is_commenced">
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="93" parent="15" name="is_concluded">
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <index id="94" parent="15" name="class_id">
+      <columns>class_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="95" parent="15" name="PRIMARY">
+      <columns>session_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="96" parent="15" name="class_sessions_ibfk_1">
+      <columns>class_id</columns>
+      <ref-key>~.class.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="97" parent="16" name="course_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="98" parent="16" name="course_code">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="99" parent="16" name="course_lang">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="100" parent="16" name="course_level">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="101" parent="16" name="PRIMARY">
+      <columns>course_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="102" parent="17" name="enrollment_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="103" parent="17" name="is_approved">
+      <data-type>tinyint(1)|0</data-type>
+    </column>
+    <column id="104" parent="17" name="approved_user">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="105" parent="17" name="approved_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="106" parent="17" name="approval_remarks">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="107" parent="17" name="approved_user">
+      <columns>approved_user</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="108" parent="17" name="PRIMARY">
+      <columns>enrollment_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="109" parent="17" name="enrollment_approval_ibfk_1">
+      <columns>enrollment_id</columns>
+      <ref-key>~.class_enrollment.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="110" parent="17" name="enrollment_approval_ibfk_2">
+      <columns>approved_user</columns>
+      <ref-key>~.users.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="111" parent="18" name="enrollment_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="112" parent="18" name="is_confirmed">
+      <data-type>tinyint(1)|0</data-type>
+    </column>
+    <column id="113" parent="18" name="confirmed_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="114" parent="18" name="confirmed_user">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="115" parent="18" name="confirmed_user">
+      <columns>confirmed_user</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="116" parent="18" name="PRIMARY">
+      <columns>enrollment_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="117" parent="18" name="enrollment_confirmation_ibfk_1">
+      <columns>enrollment_id</columns>
+      <ref-key>~.class_enrollment.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="118" parent="18" name="enrollment_confirmation_ibfk_2">
+      <columns>confirmed_user</columns>
+      <ref-key>~.users.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="119" parent="19" name="instructor_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="120" parent="19" name="instructor_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="121" parent="19" name="instructor_address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="122" parent="19" name="instructor_tp">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="123" parent="19" name="instructor_email">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="124" parent="19" name="PRIMARY">
+      <columns>instructor_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="125" parent="20" name="user_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="126" parent="20" name="login_hash">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="127" parent="20" name="login_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="128" parent="20" name="is_logged_off">
+      <comment>default 0; 0 =&gt; logged_in, 1 =&gt; logged_off</comment>
+      <data-type>tinyint(4)|0</data-type>
+    </column>
+    <index id="129" parent="20" name="user_id">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <foreign-key id="130" parent="20" name="login_history_ibfk_1">
+      <columns>user_id</columns>
+      <ref-key>~.users.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="131" parent="21" name="office_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="132" parent="21" name="office_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="133" parent="21" name="office_address_line1">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="134" parent="21" name="office_address_line2">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="135" parent="21" name="office_tp1">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="136" parent="21" name="office_tp2">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="137" parent="21" name="office_fax">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="138" parent="21" name="office_email">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="139" parent="21" name="coordinator_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="140" parent="21" name="coordinator_tp1">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="141" parent="21" name="coordinator_tp2">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="142" parent="21" name="coordinator_email">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="143" parent="21" name="PRIMARY">
+      <columns>office_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="144" parent="22" name="prop_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="145" parent="22" name="prop_cat">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="146" parent="22" name="prop_value">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="147" parent="22" name="PRIMARY">
+      <columns>prop_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="148" parent="23" name="date_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="149" parent="23" name="session_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="150" parent="23" name="class_date">
+      <data-type>date|0</data-type>
+    </column>
+    <index id="151" parent="23" name="class_id">
+      <columns>session_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="152" parent="23" name="PRIMARY">
+      <columns>date_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="153" parent="23" name="session_schedule_ibfk_1">
+      <columns>session_id</columns>
+      <ref-key>~.class_sessions.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="154" parent="24" name="center_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="155" parent="24" name="center_name">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="156" parent="24" name="center_address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="157" parent="24" name="center_telephone">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="158" parent="24" name="coordinator_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="159" parent="24" name="coordinator_address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="160" parent="24" name="PRIMARY">
+      <columns>center_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="161" parent="25" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="162" parent="25" name="level_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="163" parent="25" name="prv_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="164" parent="25" name="level_id">
+      <columns>level_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="165" parent="25" name="level_id_2">
+      <columns>level_id
+prv_id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="166" parent="25" name="prv_id">
+      <columns>prv_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="167" parent="25" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="168" parent="25" name="level_id_2">
+      <columns>level_id
+prv_id</columns>
+      <underlying-index>level_id_2</underlying-index>
+    </key>
+    <foreign-key id="169" parent="25" name="user_level_privileges_ibfk_2">
+      <columns>level_id</columns>
+      <ref-key>~.user_levels.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="170" parent="25" name="user_level_privileges_ibfk_1">
+      <columns>prv_id</columns>
+      <ref-key>offlangprog.system_privileges(prv_id)</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <column id="171" parent="26" name="level_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="172" parent="26" name="level_code">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="173" parent="26" name="level_name">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="174" parent="26" name="level_display_name">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="175" parent="26" name="level_active">
+      <comment>i is for &apos;active&apos; status and 0 is for &apos;inactive&apos; status</comment>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <key id="176" parent="26" name="PRIMARY">
+      <columns>level_id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="177" parent="27" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="178" parent="27" name="user_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="179" parent="27" name="prv_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="180" parent="27" name="user_priv_combo">
+      <columns>user_id
+prv_id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="181" parent="27" name="wb_user_privileges_ibfk_1">
+      <columns>prv_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="182" parent="27" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="183" parent="27" name="user_priv_combo">
+      <columns>user_id
+prv_id</columns>
+      <underlying-index>user_priv_combo</underlying-index>
+    </key>
+    <foreign-key id="184" parent="27" name="user_privileges_ibfk_2">
+      <columns>user_id</columns>
+      <ref-key>~.users.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="185" parent="27" name="user_privileges_ibfk_1">
+      <columns>prv_id</columns>
+      <ref-key>offlangprog.system_privileges(prv_id)</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="186" parent="28" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="187" parent="28" name="user_name">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="188" parent="28" name="user_display_name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="189" parent="28" name="user_password">
+      <data-type>varchar(80)|0</data-type>
+    </column>
+    <column id="190" parent="28" name="user_level">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="191" parent="28" name="user_status">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="192" parent="28" name="user_logged_last">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="193" parent="28" name="last_logged_hash">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="194" parent="28" name="user_level">
+      <columns>user_level</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="195" parent="28" name="PRIMARY">
+      <columns>user_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="196" parent="28" name="users_ibfk_1">
+      <columns>user_level</columns>
+      <ref-key>~.user_levels.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>
